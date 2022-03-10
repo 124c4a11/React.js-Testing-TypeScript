@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 import { IUser } from '../../interfaces/IUser';
 
@@ -39,7 +40,9 @@ export function UserList(): JSX.Element {
           ?
           <ul>
             {users.map(({ id, name }) => (
-              <li key={id}>{id}. {name}</li>
+              <li key={id}>
+                <Link to={`/users/${id}`}>{id}. {name}</Link>
+              </li>
             ))}
           </ul>
           :

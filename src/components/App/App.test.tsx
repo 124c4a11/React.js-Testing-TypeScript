@@ -1,7 +1,7 @@
-import { render } from '@testing-library/react';
+import { renderWithRouter } from '../../helpers/testing/renderWithRouter';
 import App from './App';
 
 
-test('renders learn react link', () => {
-  render(<App />);
+test('renders app', () => {
+  renderWithRouter(<App />);
 });

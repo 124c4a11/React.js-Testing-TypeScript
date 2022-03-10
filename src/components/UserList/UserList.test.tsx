@@ -3,6 +3,8 @@ import axios from 'axios';
 
 import { IUser } from '../../interfaces/IUser';
 import { UserList } from './UserList';
+import { renderWithRouter } from '../../helpers/testing/renderWithRouter';
+import userEvent from '@testing-library/user-event';
 
 
 interface IResponse {
@@ -68,7 +70,7 @@ describe('USER LIST', () => {
   it('render user list', async () => {
     mockedAxios.get.mockResolvedValue(response);
 
-    render(<UserList />);
+    renderWithRouter(<UserList />);
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
 
@@ -79,5 +81,18 @@ describe('USER LIST', () => {
     expect(items).toHaveLength(3);
     expect(screen.getByRole('list')).toBeInTheDocument();
     expect(mockedAxios.get).toBeCalledTimes(1);
+  });
+
+  it('redirect to user page', async () => {
+    mockedAxios.get.mockResolvedValue(response);
+
+    renderWithRouter(<UserList />);
+
+    const links = await screen.findAllByRole('link');
+
+    expect(links[0]).toHaveAttribute('href', expect.stringMatching(/\/users\/\d*/));
+
+    userEvent.click(links[0]);
+    expect(screen.getByRole('heading', { name: /user id/i })).toBeInTheDocument();
   });
 });
