@@ -1,7 +1,9 @@
-import { renderWithRouter } from '../../helpers/testing/renderWithRouter';
 import App from './App';
+import { renderTestApp } from '../../helpers/testing/renderTestApp';
 
 
-test('renders app', () => {
-  renderWithRouter(<App />);
+describe('APP', () => {
+  test('renders app', () => {
+    renderTestApp(<App />);
+  });
 });

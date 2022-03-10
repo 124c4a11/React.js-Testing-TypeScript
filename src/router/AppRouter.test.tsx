@@ -1,10 +1,11 @@
 import { screen } from '@testing-library/react';
+import { renderTestApp } from '../helpers/testing/renderTestApp';
 import { renderWithRouter } from '../helpers/testing/renderWithRouter';
 
 
 describe('APP ROUTER', () => {
   it('redirect to home page', () => {
-    renderWithRouter(null);
+    renderTestApp(null);
 
     expect(screen.getByRole('heading', { name: /home/i })).toBeInTheDocument();
   });

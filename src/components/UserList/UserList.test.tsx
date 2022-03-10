@@ -3,8 +3,8 @@ import axios from 'axios';
 
 import { IUser } from '../../interfaces/IUser';
 import { UserList } from './UserList';
-import { renderWithRouter } from '../../helpers/testing/renderWithRouter';
 import userEvent from '@testing-library/user-event';
+import { renderTestApp } from '../../helpers/testing/renderTestApp';
 
 
 interface IResponse {
@@ -70,7 +70,7 @@ describe('USER LIST', () => {
   it('render user list', async () => {
     mockedAxios.get.mockResolvedValue(response);
 
-    renderWithRouter(<UserList />);
+    renderTestApp(<UserList />);
 
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
 
@@ -86,7 +86,7 @@ describe('USER LIST', () => {
   it('redirect to user page', async () => {
     mockedAxios.get.mockResolvedValue(response);
 
-    renderWithRouter(<UserList />);
+    renderTestApp(<UserList />);
 
     const links = await screen.findAllByRole('link');
 

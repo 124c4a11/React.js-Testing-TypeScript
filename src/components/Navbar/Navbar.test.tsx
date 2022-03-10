@@ -1,12 +1,13 @@
 import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { renderWithRouter } from '../../helpers/testing/renderWithRouter';
+
 import { Navbar } from './Navbar';
+import { renderTestApp } from '../../helpers/testing/renderTestApp';
 
 
 describe('NAVBAR', () => {
   it('redirect to home page', () => {
-    renderWithRouter(<Navbar />);
+    renderTestApp(<Navbar />);
 
     const link = screen.getByRole('link', { name: /home/i });
 
@@ -15,7 +16,7 @@ describe('NAVBAR', () => {
   });
 
   it('redirect to about page', () => {
-    renderWithRouter(<Navbar />);
+    renderTestApp(<Navbar />);
 
     const link = screen.getByRole('link', { name: /about/i });
 
@@ -24,7 +25,7 @@ describe('NAVBAR', () => {
   });
 
   it('redirect to users page', () => {
-    renderWithRouter(<Navbar />);
+    renderTestApp(<Navbar />);
 
     const link = screen.getByRole('link', { name: /users/i });
 
